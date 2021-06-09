@@ -3,14 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
+#    By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/06/09 12:57:42 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/06/09 16:53:53 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = sources/main.c
+SRCS = sources/main.c \
+		sources/ft_parse_map.c \
+		sources/get_next_line.c \
+		sources/get_next_line_utils.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -28,7 +31,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 		${CC} ${CFLAGS} $(OBJS) -o $(NAME)
 
-$(OBJS):	includes/solong.h
+$(OBJS):	includes/solong.h includes/get_next_line.h
 
 clean:
 		$(RM) $(OBJS)

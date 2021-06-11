@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+         #
+#    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/06/09 16:53:53 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/06/11 16:13:07 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = sources/main.c \
 		sources/ft_parse_map.c \
-		sources/get_next_line.c \
-		sources/get_next_line_utils.c
+		sources/gnl/get_next_line.c \
+		sources/ft_strlen.c \
+		sources/ft_strdup.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -21,15 +22,15 @@ NAME	= solong
 
 CC		= gcc
 RM		= rm -f
-CFLAGS	= -g3
+CFLAGS	= -g
 
 all:		$(NAME)
 
 %.o : %.c
-	${CC} ${CFLAGS} -I./includes -o $@ -c $<
+	${CC} ${CFLAGS} -I./includes -I./minilibX -o $@ -c $<
 
 $(NAME):	$(OBJS)
-		${CC} ${CFLAGS} $(OBJS) -o $(NAME)
+		${CC} ${CFLAGS}  $(OBJS) -LminilibX -lminilibX -framework OpenGL -framework AppKit -o $(NAME)
 
 $(OBJS):	includes/solong.h includes/get_next_line.h
 

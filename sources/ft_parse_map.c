@@ -3,40 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 16:00:45 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/09 16:00:45 by ngeschwi         ###   ########.fr       */
+/*   Created: 2021/06/11 14:52:35 by ngeschwi          #+#    #+#             */
+/*   Updated: 2021/06/11 14:52:35 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 #include "get_next_line.h"
 
-static int  ft_get_map(char **argv)
+static void	ft_get_info_map(t_map *map)
 {
-    char    *line = NULL;
-    int     gnl;
-    int     fd;
+	int	i;
 
-    fd = open("map/map1.ber", O_RDONLY);
-    gnl = get_next_line(fd, &line);
-    while (gnl > 0)
-    {
-        printf("%s\n", line);
-        free(line);
-        gnl = get_next_line(fd, &line);
-    }
-    printf("%s\n", line);
-    free(line);
-    return (NO_ERROR);
+	i = 0;
+	while (map->map[i])
+	{
+		while (map->map[i] != '\n' && map->map[i])
+		{
+			map->column++;
+			i++;
+		}
+		map->line++;
+		i++;
+	}
 }
 
-int ft_parse_map(int argc, char **argv)
+static int	ft_get_map(char **argv, t_map *map)
 {
-    t_parse parse;
+	char	*line;
+	int		gnl;
+	int		fd;
 
-    if (ft_get_map(argv) == ERROR)
-        return (ERROR);
-    return (NO_ERROR);
+	fd = open("map/map1.ber", O_RDONLY);
+	gnl = get_next_line(fd, &line);
+	map->map = ft_strdup(line);
+	ft_get_info_map(map);
+	printf("%s", map->map);
+	free(line);
+	return (NO_ERROR);
+}
+
+int	ft_parse_map(int argc, char **argv, t_map *map)
+{
+	t_parse	parse;
+
+	if (ft_get_map(argv, map) == ERROR)
+		return (ERROR);
+	return (NO_ERROR);
 }

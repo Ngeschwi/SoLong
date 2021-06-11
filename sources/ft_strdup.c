@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/11 15:58:27 by ngeschwi         ###   ########.fr       */
+/*   Created: 2021/06/11 15:15:07 by ngeschwi          #+#    #+#             */
+/*   Updated: 2021/06/11 15:15:20 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-#include "get_next_line.h"
 
-static void	ft_init_map(t_map *map)
+char	*ft_strdup(const char *str)
 {
-	map->map = NULL;
-	map->line = 0;
-	map->column = 0;
-}
+	int		i;
+	char	*dst;
 
-int	main(int argc, char **argv)
-{
-	t_map	map;
-	void	*mlx;
-
-	ft_init_map(&map);
-	if (ft_parse_map(argc, argv, &map) == ERROR)
-		return (ERROR);
-	mlx = mlx_init();
-	return (0);
+	if (str == NULL)
+	{
+		dst = malloc(sizeof(char) * 1);
+		dst[0] = '\0';
+		return (dst);
+	}
+	dst = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		dst[i] = str[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

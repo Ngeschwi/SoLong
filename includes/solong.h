@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/11 16:13:41 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/06/12 14:13:18 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ typedef struct s_map
 # define NO_ERROR 0
 
 int		ft_parse_map(int argc, char **argv, t_map *map);
+int		ft_other_carac(t_map *map, t_parse *parse);
+int		ft_check_is_close(t_map *map);
+int		ft_error_map(t_map *map, char *str);
 
 int		ft_strlen(const char *str);
+void	ft_putstr(char *str);
 char	*ft_strdup(const char *str);
 
 #endif

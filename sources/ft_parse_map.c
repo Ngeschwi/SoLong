@@ -13,11 +13,13 @@
 #include "solong.h"
 #include "get_next_line.h"
 
-static void	ft_get_info_map(t_map *map)
+static int	ft_get_info_map(t_map *map, t_parse *parse)
 {
 	int	i;
+	int	check;
 
 	i = 0;
+	check = 0;
 	while (map->map[i])
 	{
 		while (map->map[i] != '\n' && map->map[i])
@@ -25,12 +27,19 @@ static void	ft_get_info_map(t_map *map)
 			map->column++;
 			i++;
 		}
+		if (check != 0)
+			if (check != map->column)
+				return (ft_error_map(map, "La map n'est pas un rectangle\n"));
+		check = map->column;
+		map->column = 0;
 		map->line++;
 		i++;
 	}
+	map->column = check;
+	return (NO_ERROR);
 }
 
-static int	ft_get_map(char **argv, t_map *map)
+static int	ft_get_map(char **argv, t_map *map, t_parse *parse)
 {
 	char	*line;
 	int		gnl;
@@ -39,8 +48,13 @@ static int	ft_get_map(char **argv, t_map *map)
 	fd = open("map/map1.ber", O_RDONLY);
 	gnl = get_next_line(fd, &line);
 	map->map = ft_strdup(line);
-	ft_get_info_map(map);
-	printf("%s", map->map);
+	if (ft_get_info_map(map, parse) == ERROR)
+		return (ERROR);
+	if (ft_other_carac(map, parse) == ERROR)
+		return (ERROR);
+	if (ft_check_is_close(map) == ERROR)
+		return (ERROR);
+	printf("%s\n", map->map);
 	free(line);
 	return (NO_ERROR);
 }
@@ -49,7 +63,7 @@ int	ft_parse_map(int argc, char **argv, t_map *map)
 {
 	t_parse	parse;
 
-	if (ft_get_map(argv, map) == ERROR)
+	if (ft_get_map(argv, map, &parse) == ERROR)
 		return (ERROR);
 	return (NO_ERROR);
 }

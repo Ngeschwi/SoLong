@@ -6,18 +6,12 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 10:55:41 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/11 15:14:48 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/06/28 12:29:22 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "solong.h"
-
-static void	ft_free_if_define(char **str)
-{
-	if (*str)
-		free(*str);
-}
 
 static char	*ft_strjoin(char **str, char *buff)
 {
@@ -43,7 +37,7 @@ static char	*ft_strjoin(char **str, char *buff)
 		i++;
 	}
 	dst[i + len_str] = '\0';
-	ft_free_if_define(str);
+	free(*str);
 	return (dst);
 }
 
@@ -64,6 +58,6 @@ int	get_next_line(int fd, char **line)
 		nbr_read = read(fd, buff, BUFFER_SIZE);
 	}
 	*line = ft_strdup(str);
-	ft_free_if_define(&str);
+	free(str);
 	return (0);
 }

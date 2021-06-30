@@ -6,12 +6,11 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/28 12:20:01 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/06/30 16:28:31 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-#include "get_next_line.h"
 
 static void	ft_init_parse(t_parse *parse)
 {
@@ -34,6 +33,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_parse parse;
 	void	*mlx;
+	void	*mlx_win;
 
 	ft_init_map(&map);
 	ft_init_parse(&parse);

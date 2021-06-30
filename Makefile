@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/06/28 12:34:44 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/06/30 16:22:06 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,18 +27,24 @@ NAME	= solong
 CC		= gcc
 RM		= rm -f
 CFLAGS	= -g
+LIBS	= -LminilibX -lmlx -framework OpenGL -framework AppKit
+MLX		= libmlx.dylib
 
 all:		$(NAME)
 
 %.o : %.c
 	${CC} ${CFLAGS} -I./includes -I./minilibX -o $@ -c $<
 
-$(NAME):	$(OBJS)
-		${CC} ${CFLAGS}  $(OBJS) -o $(NAME)
+$(NAME):	${MLX} $(OBJS)
+		${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
 
-$(OBJS):	includes/solong.h includes/get_next_line.h
+$(MLX) :
+		$(MAKE) -C minilibX
+
+$(OBJS):	includes/solong.h includes/get_next_line.h minilibX/mlx.h
 
 clean:
+		$(MAKE) -C minilibX clean
 		$(RM) $(OBJS)
 
 fclean:		clean

@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/28 12:17:43 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/06/30 16:28:28 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../minilibX/mlx.h"
+# include "mlx.h"
 
 typedef struct s_parse
 {

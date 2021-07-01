@@ -6,11 +6,12 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/30 16:28:31 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/07/01 15:15:31 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
+#include "mlx.h"
 
 static void	ft_init_parse(t_parse *parse)
 {
@@ -32,12 +33,15 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 	t_parse parse;
-	void	*mlx;
+	void 	*mlx;
 	void	*mlx_win;
 
 	ft_init_map(&map);
 	ft_init_parse(&parse);
 	if (ft_parse_map(argc, argv, &map, &parse) == ERROR)
 		return (ERROR);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "test");
+	mlx_loop(mlx_win);
 	return (0);
 }

@@ -6,13 +6,18 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/07/04 10:57:30 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/07/04 13:14:57 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-static void	ft_init_parse(t_parse *parse)
+static void	ft_init_data_struct(t_data *mlx)
+{
+	mlx->path_bg = "img/bg.xpm";
+}
+
+static void	ft_init_parse_struct(t_parse *parse)
 {
 	parse->collect_c = 0;
 	parse->exit_e = 0;
@@ -35,9 +40,11 @@ int	main(void)
 	t_data	mlx;
 
 	ft_init_map_struct(&map);
-	ft_init_parse(&parse);
+	ft_init_parse_struct(&parse);
+	ft_init_data_struct(&mlx);
 	if (ft_parse_map(&map, &parse) == ERROR)
 		return (ERROR);
-	ft_init_map(&mlx, &map);
+	if (ft_init_map(&mlx, &map) == ERROR)
+		return (ERROR);
 	return (0);
 }

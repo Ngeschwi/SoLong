@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/07/04 10:54:36 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/07/04 13:09:02 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
+	char	*path_bg;
+	void	*img_bg;
 }				t_data;
 
 # define ERROR 1
 # define NO_ERROR 0
+# define END 1
 
 int		ft_parse_map(t_map *map, t_parse *parse);
 int		ft_check_is_close(t_map *map);
 int		ft_error_map(t_map *map, char *str, int check);
+int		ft_error_game(t_map *map, char *str);
 void	ft_free_map(char **map);
 
-void	ft_init_map(t_data *mlx, t_map *map);
+int		ft_init_map(t_data *mlx, t_map *map);
 
 int		ft_strlen(const char *str);
 void	ft_putstr(char *str);

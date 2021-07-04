@@ -39,12 +39,7 @@ static int	ft_other_carac(t_map *map, t_parse *parse)
 			parse->exit_e++;
 		else if (map->map[i] != '1' && map->map[i] != '0'
 			&& map->map[i] != '\n')
-		{
-			if (map->map[i] == ' ')
-				return (ft_error_map(map, "La map n'est pas un rectangle\n", 0));
-			else
-				return (ft_error_map(map, "Mauvais caractere dans la map\n", 0));
-		}
+			return (ft_error_map(map, "Mauvais caractere dans la map\n", 0));
 		i++;
 	}
 	if (ft_check_carac_posi(parse, map) == ERROR)

@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/07/04 11:09:41 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/07/04 11:59:24 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ all:		$(NAME)
 
 $(NAME):	${MLX} $(OBJS)
 		${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
-		@mv minilibX/$(MLX)	.
 
 $(MLX) :
 		$(MAKE) -C minilibX
+		@cp minilibX/$(MLX)	.
 
 $(OBJS):	includes/solong.h includes/get_next_line.h minilibX/mlx.h
 

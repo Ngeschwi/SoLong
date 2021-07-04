@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/30 16:28:28 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/07/04 10:54:36 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "mlx.h"
+# include "../minilibX/mlx.h"
 
 typedef struct s_parse
 {
@@ -35,13 +35,21 @@ typedef struct s_map
 	int		column;
 }				t_map;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*mlx_win;
+}				t_data;
+
 # define ERROR 1
 # define NO_ERROR 0
 
-int		ft_parse_map(int argc, char **argv, t_map *map, t_parse *parse);
+int		ft_parse_map(t_map *map, t_parse *parse);
 int		ft_check_is_close(t_map *map);
 int		ft_error_map(t_map *map, char *str, int check);
 void	ft_free_map(char **map);
+
+void	ft_init_map(t_data *mlx, t_map *map);
 
 int		ft_strlen(const char *str);
 void	ft_putstr(char *str);

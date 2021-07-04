@@ -52,7 +52,7 @@ static int	ft_other_carac(t_map *map, t_parse *parse)
 	return (NO_ERROR);
 }
 
-static int	ft_get_info_map(t_map *map, t_parse *parse)
+static int	ft_get_info_map(t_map *map)
 {
 	int	i;
 	int	check;
@@ -78,7 +78,7 @@ static int	ft_get_info_map(t_map *map, t_parse *parse)
 	return (NO_ERROR);
 }
 
-static int	ft_get_map(char **argv, t_map *map, t_parse *parse)
+static int	ft_get_map(t_map *map, t_parse *parse)
 {
 	char	*line;
 	int		gnl;
@@ -88,7 +88,7 @@ static int	ft_get_map(char **argv, t_map *map, t_parse *parse)
 	gnl = get_next_line(fd, &line);
 	map->map = ft_strdup(line);
 	free(line);
-	if (ft_get_info_map(map, parse) == ERROR)
+	if (ft_get_info_map(map) == ERROR)
 		return (ERROR);
 	if (ft_other_carac(map, parse) == ERROR)
 		return (ERROR);
@@ -99,9 +99,9 @@ static int	ft_get_map(char **argv, t_map *map, t_parse *parse)
 	return (NO_ERROR);
 }
 
-int	ft_parse_map(int argc, char **argv, t_map *map, t_parse *parse)
+int	ft_parse_map(t_map *map, t_parse *parse)
 {
-	if (ft_get_map(argv, map, parse) == ERROR)
+	if (ft_get_map(map, parse) == ERROR)
 		return (ERROR);
 	return (NO_ERROR);
 }

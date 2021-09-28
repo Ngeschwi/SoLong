@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/07/04 13:09:02 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:00:37 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_map
 	char	*map;
 	char	**map_line;
 	char	**map_column;
-	int		line;
-	int		column;
+	int		nbr_line;
+	int		nbr_column;
 }				t_map;
 
 typedef struct s_data

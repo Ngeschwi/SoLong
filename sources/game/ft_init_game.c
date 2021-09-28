@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:53:13 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/07/04 13:15:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/28 15:53:39 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_exit(int	key, t_data *mlx)
 		printf("test D\n");
 	if (key == 53)
 	{
+		printf("test quit\n");
 		mlx_clear_window(mlx->mlx, mlx->mlx_win);
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 		return (END);

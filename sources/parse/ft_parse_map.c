@@ -51,25 +51,26 @@ static int	ft_get_info_map(t_map *map)
 {
 	int	i;
 	int	check;
+	int	len;
 
 	i = 0;
 	check = 0;
-	while (map->map[i])
+	len = ft_strlen(map->map);
+	while (i < len)
 	{
 		while (map->map[i] != '\n' && map->map[i])
 		{
-			map->column++;
+			map->nbr_column++;
 			i++;
 		}
-		if (check != 0)
-			if (check != map->column)
-				return (ft_error_map(map, "La map n'est pas un rectangle\n", 0));
-		check = map->column;
-		map->column = 0;
-		map->line++;
+		if (check != 0 && check != map->nbr_column)
+			return (ft_error_map(map, "La map n'est pas un rectangle\n", 0));
+		check = map->nbr_column;
+		map->nbr_column = 0;
+		map->nbr_line++;
 		i++;
 	}
-	map->column = check;
+	map->nbr_column = check;
 	return (NO_ERROR);
 }
 
@@ -90,7 +91,7 @@ static int	ft_get_map(t_map *map, t_parse *parse)
 	if (ft_check_is_close(map) == ERROR)
 		return (ERROR);
 	printf("%s\n", map->map);
-	printf("line : %d et colunm : %d\n", map->line, map->column);
+	printf("line : %d et colunm : %d\n", map->nbr_line, map->nbr_column);
 	return (NO_ERROR);
 }
 

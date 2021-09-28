@@ -6,11 +6,11 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/07/04 11:59:24 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/09/28 16:28:49 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = sources/main.c \
+SRCS = main.c \
 		sources/parse/ft_parse_map.c \
 		sources/parse/ft_parse_map2.c \
 		sources/error_free/ft_error.c \

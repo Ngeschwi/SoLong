@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:31:25 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/30 22:09:54 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/30 23:13:50 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static void	ft_move_player_ud(t_data *data, int where, int i)
 		i--;
 	data->map_line[i][data->coord[X]] = 'P';
 	data->coord[Y] = i;
+	ft_create_bg(data, 0x00096A09);
 	ft_create_map(data);
 }
 
 static void	ft_exit(t_data *data, int where, int i)
 {
-	if (data->collect_c != 0)
-		ft_move_player_ud(data, where, i);
-	else
-		printf("sortie\n");
+	ft_move_player_ud(data, where, i);
+	if (data->collect_c ==0)
+		ft_end(data);
 }
 
 int	ft_up_down(t_data *data, int where)

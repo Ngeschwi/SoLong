@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:34:40 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/30 22:19:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/30 22:28:48 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	ft_create_map(t_data *data)
 			}
 			else if (data->map_line[j][i] == 'P')
 			{
-				if (data->img_p != NULL)
-					mlx_destroy_image(data->mlx, data->img_p);
+				// if (data->img_p != NULL)
+				// 	mlx_destroy_image(data->mlx, data->img_p);
 				data->img_p = mlx_xpm_file_to_image(data->mlx, data->path_p, &l, &h);
 				mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_p, 60 * i, 60 * j);
 			}

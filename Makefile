@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/09/30 22:10:16 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/09/30 23:04:00 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = main.c \
 		sources/game/ft_init_game.c \
 		sources/game/ft_create_map.c \
 		sources/game/ft_command_up_down.c \
-		sources/game/ft_command_left_right.c 
+		sources/game/ft_command_left_right.c \
+		sources/game/ft_end.c
 
 OBJS	= $(SRCS:.c=.o)
 

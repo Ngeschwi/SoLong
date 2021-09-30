@@ -6,99 +6,70 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 14:11:32 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/28 16:01:16 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:25:15 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-static void	ft_get_map_line(t_map *map)
+static void	ft_get_map_line(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	map->map_line = malloc(sizeof(char *) * (map->nbr_line + 1));
-	while (i < map->nbr_line)
+	data->map_line = malloc(sizeof(char *) * (data->nbr_line + 1));
+	while (i < data->nbr_line)
 	{
 		j = 0;
-		map->map_line[i] = malloc(sizeof(char) * (map->nbr_column) + 1);
-		while (j < map->nbr_column)
+		data->map_line[i] = malloc(sizeof(char) * (data->nbr_column) + 1);
+		while (j < data->nbr_column)
 		{
-			map->map_line[i][j] = map->map[i * (map->nbr_column + 1) + j];
+			data->map_line[i][j] = data->map[i * (data->nbr_column + 1) + j];
 			j++;
 		}
-		map->map_line[i][j] = '\0';
+		data->map_line[i][j] = '\0';
 		i++;
 	}
 }
 
-static void	ft_get_map_column(t_map *map)
+static int	ft_check_is_close2(t_data *data)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	map->map_column = malloc(sizeof(char *) * (map->nbr_column + 1));
-	while (i < map->nbr_column)
+	while (data->map[i])
 	{
-		j = 0;
-		map->map_column[i] = malloc(sizeof(char) * (map->nbr_line + 1));
-		while (j < map->nbr_line)
+		if (data->map[i] == '\n')
 		{
-			map->map_column[i][j] = map->map[i + j * (map->nbr_column + 1)];
-			j++;
+			if (data->map[i - 1] != '1' || data->map[i + 1] != '1')
+				return (ft_error_map(data, "La map n'est pas fermee\n", 0));
 		}
-		map->map_column[i][j] = '\0';
 		i++;
-	}
-}
-
-static int	ft_check_is_close2(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map->map_column[i][j])
-	{
-		if (map->map_column[i][j] != '1')
-			return (ft_error_map(map, "La map n'est pas fermee\n", 1));
-		j++;
-	}
-	j= 0;
-	i = map->nbr_column - 1;
-	while (map->map_column[i][j])
-	{
-		if (map->map_column[i][j] != '1')
-			return (ft_error_map(map, "La map n'est pas fermee\n", 1));
-		j++;
 	}
 	return (NO_ERROR);
 }
 
-int	ft_check_is_close(t_map *map)
+int	ft_check_is_close(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (map->map[i] != '\n' && map->map[i])
+	while (data->map[i] != '\n' && data->map[i])
 	{
-		if (map->map[i] != '1')
-			return (ft_error_map(map, "La map n'est pas fermee\n", 0));
+		if (data->map[i] != '1')
+			return (ft_error_map(data, "La map n'est pas fermee\n", 0));
 		i++;
 	}
-	i = ft_strlen(map->map) - 1;
-	while (map->map[i] != '\n' && map->map[i])
+	i = ft_strlen(data->map) - 1;
+	while (data->map[i] != '\n' && data->map[i])
 	{
-		if (map->map[i] != '1')
-			return (ft_error_map(map, "La map n'est pas fermee\n", 0));
+		if (data->map[i] != '1')
+			return (ft_error_map(data, "La map n'est pas fermee\n", 0));
 		i--;
 	}
-	ft_get_map_line(map);
-	ft_get_map_column(map);
-	if (ft_check_is_close2(map) == ERROR)
+	ft_get_map_line(data);
+	if (ft_check_is_close2(data) == ERROR)
 		return (ERROR);
 	return (NO_ERROR);
 }

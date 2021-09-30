@@ -13,41 +13,46 @@
 #include "solong.h"
 #include "get_next_line.h"
 
-static int	ft_check_carac_posi(t_parse *parse, t_map *map)
+static int	ft_check_carac_posi(t_data *data)
 {
-	if (parse->collect_c > 1 || parse->exit_e > 1
-		|| parse->player_p > 1)
-		return (ft_error_map(map, "Plus d'un caractere de position", 0));
-	if (parse->collect_c == 0 || parse->exit_e == 0
-		|| parse->player_p == 0)
-		return (ft_error_map(map, "Il manque un caractere de position\n", 0));
+	if (data->exit_e > 1 || data->player_p > 1)
+		return (ft_error_map(data, "Plus d'un caractere de position", 0));
+	if (data->collect_c == 0 || data->exit_e == 0
+		|| data->player_p == 0)
+		return (ft_error_map(data, "Il manque un caractere de position\n", 0));
 	return (NO_ERROR);
 }
 
-static int	ft_other_carac(t_map *map, t_parse *parse)
+static int	ft_other_carac(t_data *data)
 {
 	int	i;
+	int	check;
 
 	i = 0;
-	while (map->map[i])
+	check = 0;
+	while (data->map[i])
 	{
-		if (map->map[i] == 'C')
-			parse->collect_c++;
-		else if (map->map[i] == 'P')
-			parse->player_p++;
-		else if (map->map[i] == 'E')
-			parse->exit_e++;
-		else if (map->map[i] != '1' && map->map[i] != '0'
-			&& map->map[i] != '\n')
-			return (ft_error_map(map, "Mauvais caractere dans la map\n", 0));
+		if (data->map[i] == 'C')
+			data->collect_c++;
+		else if (data->map[i] == 'P')
+		{
+			data->player_p++;
+			data->coord[X] = i - ((data->nbr_column + 1) * check);
+			data->coord[Y] = check;
+		}
+		else if (data->map[i] == 'E')
+			data->exit_e++;
+		else if (data->map[i] != '1' && data->map[i] != '0'
+			&& data->map[i] != '\n')
+			return (ft_error_map(data, "Mauvais caractere dans la map\n", 0));
 		i++;
+		if (data->map[i] == '\n')
+			check++;
 	}
-	if (ft_check_carac_posi(parse, map) == ERROR)
-		return (ERROR);
 	return (NO_ERROR);
 }
 
-static int	ft_get_info_map(t_map *map)
+static int	ft_get_info_map(t_data *data)
 {
 	int	i;
 	int	check;
@@ -55,26 +60,26 @@ static int	ft_get_info_map(t_map *map)
 
 	i = 0;
 	check = 0;
-	len = ft_strlen(map->map);
+	len = ft_strlen(data->map);
 	while (i < len)
 	{
-		while (map->map[i] != '\n' && map->map[i])
+		while (data->map[i] != '\n' && data->map[i])
 		{
-			map->nbr_column++;
+			data->nbr_column++;
 			i++;
 		}
-		if (check != 0 && check != map->nbr_column)
-			return (ft_error_map(map, "La map n'est pas un rectangle\n", 0));
-		check = map->nbr_column;
-		map->nbr_column = 0;
-		map->nbr_line++;
+		if (check != 0 && check != data->nbr_column)
+			return (ft_error_map(data, "La map n'est pas un rectangle\n", 0));
+		check = data->nbr_column;
+		data->nbr_column = 0;
+		data->nbr_line++;
 		i++;
 	}
-	map->nbr_column = check;
+	data->nbr_column = check;
 	return (NO_ERROR);
 }
 
-static int	ft_get_map(t_map *map, t_parse *parse)
+static int	ft_get_map(t_data *data)
 {
 	char	*line;
 	int		gnl;
@@ -82,22 +87,22 @@ static int	ft_get_map(t_map *map, t_parse *parse)
 
 	fd = open("map/map1.ber", O_RDONLY);
 	gnl = get_next_line(fd, &line);
-	map->map = ft_strdup(line);
+	data->map = ft_strdup(line);
 	free(line);
-	if (ft_get_info_map(map) == ERROR)
+	if (ft_get_info_map(data) == ERROR)
 		return (ERROR);
-	if (ft_other_carac(map, parse) == ERROR)
+	if (ft_other_carac(data) == ERROR)
 		return (ERROR);
-	if (ft_check_is_close(map) == ERROR)
+	if (ft_check_carac_posi(data) == ERROR)
 		return (ERROR);
-	printf("%s\n", map->map);
-	printf("line : %d et colunm : %d\n", map->nbr_line, map->nbr_column);
+	if (ft_check_is_close(data) == ERROR)
+		return (ERROR);
 	return (NO_ERROR);
 }
 
-int	ft_parse_map(t_map *map, t_parse *parse)
+int	ft_parse_map(t_data *data)
 {
-	if (ft_get_map(map, parse) == ERROR)
+	if (ft_get_map(data) == ERROR)
 		return (ERROR);
 	return (NO_ERROR);
 }

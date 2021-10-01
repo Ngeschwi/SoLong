@@ -20,6 +20,10 @@ static int	ft_check_carac_posi(t_data *data)
 	if (data->collect_c == 0 || data->exit_e == 0
 		|| data->player_p == 0)
 		return (ft_error_map(data, "Il manque un caractere de position\n", 0));
+	if (data->nbr_line > 22)
+		return (ft_error_map(data, "La map est trop large\n", 0));
+	if (data->nbr_column > 42)
+		return (ft_error_map(data, "La map est trop longue\n", 0));
 	return (NO_ERROR);
 }
 
@@ -85,7 +89,7 @@ static int	ft_get_map(t_data *data)
 	int		gnl;
 	int		fd;
 
-	fd = open("map/map1.ber", O_RDONLY);
+	fd = open(data->path_map, O_RDONLY);
 	gnl = get_next_line(fd, &line);
 	data->map = ft_strdup(line);
 	free(line);
@@ -104,5 +108,7 @@ int	ft_parse_map(t_data *data)
 {
 	if (ft_get_map(data) == ERROR)
 		return (ERROR);
+	data->img_c = malloc(sizeof(void*) * data->collect_c);
+	data->img_w = malloc(sizeof(void*) * data->nbr_wall);
 	return (NO_ERROR);
 }

@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/30 23:12:19 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/01 18:14:07 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ typedef struct s_data
 	char	*path_p;
 	void	*img_p;
 	void	*img_bg;
-	int		pi_bi;
-	int		li_by;
-	int		endian;
-	char	*addr;
+	int		pb;
+	int		lb;
+	int		en;
+	char	*a;
+	char	*path_map;
 	int		lenght;
 	int		height;
 	int		collect_c;
+	int		check_c;
 	int		exit_e;
 	int		player_p;
 	int		coord[2];
@@ -47,6 +49,7 @@ typedef struct s_data
 	int		nbr_line;
 	int		nbr_column;
 	int		nbr_wall;
+	int		check_w;
 	int		count_move;
 }t_data;
 
@@ -63,15 +66,15 @@ typedef struct s_data
 int		ft_parse_map(t_data *data);
 int		ft_check_is_close(t_data *data);
 int		ft_error_map(t_data *data, char *str, int check);
-int		ft_error_game(t_data *data, char *str);
-void	ft_free_map(char **map);
+void	ft_free_map(t_data *data);
 
 int		ft_init_map(t_data *data);
 void	ft_create_bg(t_data *data, int color);
-void	ft_create_map(t_data *data);
+void	ft_create_map(t_data *data, int when);
 int		ft_up_down(t_data *data, int where);
 int		ft_left_right(t_data *data, int where);
 void	ft_end(t_data *data);
+void	ft_destroy_all_img(t_data *data);
 
 int		ft_strlen(const char *str);
 void	ft_putstr(char *str);

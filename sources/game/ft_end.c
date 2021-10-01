@@ -6,16 +6,41 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 23:03:02 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/09/30 23:12:34 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/01 19:14:43 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
+void	ft_destroy_all_img(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	mlx_destroy_image(data->mlx, data->img_p);
+	mlx_destroy_image(data->mlx, data->img_e);
+	mlx_destroy_image(data->mlx, data->img_bg);
+	while (i < data->collect_c)
+	{
+		mlx_destroy_image(data->mlx, data->img_c[i]);
+		i++;
+	}
+	i = 0;
+	while (i < data->nbr_wall)
+	{
+		mlx_destroy_image(data->mlx, data->img_w[i]);
+		i++;
+	}
+}
+
 void	ft_end(t_data *data)
 {
-	printf("Bravo vous avez reussi !\n");
 	free(data->map);
-	ft_free_map(data->map_line);
-	ft_create_bg(data, 0x00000000);
+	ft_free_map(data);
+	// ft_destroy_all_img(data);
+	free(data->img_c);
+	free(data->img_w);
+	mlx_clear_window(data->mlx, data->mlx_win);
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	exit(EXIT_FAILURE);
 }

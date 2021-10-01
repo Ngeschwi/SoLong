@@ -6,21 +6,21 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 12:12:14 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/06/28 12:18:38 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/01 18:14:31 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-void	ft_free_map(char **map)
+void	ft_free_map(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (data->map_line[i])
 	{
-		free(map[i]);
+		free(data->map_line[i]);
 		i++;
 	}
-	free(map);
+	free(data->map_line);
 }

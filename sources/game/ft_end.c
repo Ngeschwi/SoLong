@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 23:03:02 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 19:14:43 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/02 16:50:18 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_end(t_data *data)
 {
 	free(data->map);
 	ft_free_map(data);
-	// ft_destroy_all_img(data);
 	free(data->img_c);
 	free(data->img_w);
 	mlx_clear_window(data->mlx, data->mlx_win);

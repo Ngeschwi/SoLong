@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/09/30 23:04:00 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/10/02 16:48:10 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,18 @@ NAME	= solong
 
 CC		= gcc
 RM		= rm -f
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g3
 LIBS	= -LminilibX -lmlx -framework OpenGL -framework AppKit -lm
 MLX		= libmlx.dylib
+LINK	= -Iincludes -IminilibX
 
 all:		$(NAME)
 
-%.o : %.c
-	${CC} ${CFLAGS} -I./includes -I./minilibX -c $< -o $@
+%.o : %.c 
+	${CC} ${CFLAGS} ${LINK} -c $< -o $@
 
 $(NAME):	${MLX} $(OBJS)
-		${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
+		${CC} ${CFLAGS} ${LINK} ${OBJS} ${LIBS} -o ${NAME}
 
 $(MLX) :
 		$(MAKE) -C minilibX

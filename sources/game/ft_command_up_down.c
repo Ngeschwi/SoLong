@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:31:25 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 18:43:06 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:37:45 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_move_player_ud(t_data *data, int where, int i)
 static void	ft_exit(t_data *data, int where, int i)
 {
 	ft_move_player_ud(data, where, i);
-	if (data->collect_c ==0)
+	if (data->collect_c == 0)
 	{
 		printf("Bravo vous avez reussi !\n");
 		ft_end(data);

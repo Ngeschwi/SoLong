@@ -6,22 +6,31 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 21:34:40 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 18:22:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:47:25 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-static void	ft_put_all_img(t_data *data, char *path, void **img, int i, int j)
+static void	ft_put_all_img(t_data *data, int wich_one, int i, int j)
 {
 	int	l;
 	int	h;
 
 	l = 50;
 	h = 50;
-	*img = mlx_xpm_file_to_image(data->mlx, path, &l, &h);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, *img,
-		60 * i, 60 * j);
+	if (wich_one == 0)
+	{
+		data->img_e = mlx_xpm_file_to_image(data->mlx, data->path_e, &l, &h);
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_e,
+			60 * i, 60 * j);
+	}
+	else
+	{
+		data->img_p = mlx_xpm_file_to_image(data->mlx, data->path_p, &l, &h);
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_p,
+			60 * i, 60 * j);
+	}
 }
 
 static void	ft_put_img_collect(t_data *data, int i, int j)
@@ -32,7 +41,7 @@ static void	ft_put_img_collect(t_data *data, int i, int j)
 	l = 50;
 	h = 50;
 	data->img_c[data->check_c] = mlx_xpm_file_to_image(data->mlx,
-		data->path_c, &l, &h);
+			data->path_c, &l, &h);
 	mlx_put_image_to_window(data->mlx, data->mlx_win,
 		data->img_c[data->check_c], 60 * i, 60 * j);
 	data->check_c++;
@@ -46,7 +55,7 @@ static void	ft_put_img_wall(t_data *data, int i, int j)
 	l = 50;
 	h = 50;
 	data->img_w[data->check_w] = mlx_xpm_file_to_image(data->mlx,
-		data->path_w, &l, &h);
+			data->path_w, &l, &h);
 	mlx_put_image_to_window(data->mlx, data->mlx_win,
 		data->img_w[data->check_w], 60 * i, 60 * j);
 	data->check_w++;
@@ -72,9 +81,9 @@ void	ft_create_map(t_data *data, int when)
 			else if (data->map_line[j][i] == 'C')
 				ft_put_img_collect(data, i, j);
 			else if (data->map_line[j][i] == 'E')
-				ft_put_all_img(data, data->path_e, &data->img_e, i, j);
+				ft_put_all_img(data, 0, i, j);
 			else if (data->map_line[j][i] == 'P')
-				ft_put_all_img(data, data->path_p, &data->img_p, i, j);
+				ft_put_all_img(data, 1, i, j);
 			i++;
 		}
 		j++;

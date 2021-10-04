@@ -110,7 +110,7 @@ int	ft_parse_map(t_data *data)
 {
 	if (ft_get_map(data) == ERROR)
 		return (ERROR);
-	data->img_c = malloc(sizeof(void*) * data->collect_c);
-	data->img_w = malloc(sizeof(void*) * data->nbr_wall);
+	data->img_c = malloc(sizeof(void *) * data->collect_c);
+	data->img_w = malloc(sizeof(void *) * data->nbr_wall);
 	return (NO_ERROR);
 }

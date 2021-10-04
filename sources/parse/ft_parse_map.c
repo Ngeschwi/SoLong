@@ -93,6 +93,8 @@ static int	ft_get_map(t_data *data)
 	gnl = get_next_line(fd, &line);
 	data->map = ft_strdup(line);
 	free(line);
+	if (ft_strlen(data->map) == 0)
+		return (ft_error_map(data, "La map est vide\n", 0));
 	if (ft_get_info_map(data) == ERROR)
 		return (ERROR);
 	if (ft_other_carac(data) == ERROR)

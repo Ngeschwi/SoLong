@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/10/02 16:48:10 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/10/05 19:02:34 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ NAME	= solong
 
 CC		= gcc
 RM		= rm -f
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS	= -Wall -Werror -Wextra -g3 #-fsanitize=address
 LIBS	= -LminilibX -lmlx -framework OpenGL -framework AppKit -lm
 MLX		= libmlx.dylib
 LINK	= -Iincludes -IminilibX

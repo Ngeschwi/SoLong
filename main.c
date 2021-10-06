@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 18:42:49 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/06 13:04:49 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc != 1)
+	if (argc == 2)
 	{
 		ft_init_map_struct(&data, argv);
 		if (ft_parse_map(&data) == ERROR)
@@ -48,6 +48,11 @@ int	main(int argc, char **argv)
 		printf("Voici votre nombre de deplacements : %d\n", data.count_move);
 		if (ft_init_map(&data) == ERROR)
 			return (ERROR);
+	}
+	else 
+	{
+		printf("Error\nProbleme dans le nombre d'arguments\n");
+		return (ERROR);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 14:11:32 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 18:16:44 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/06 12:59:53 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	ft_check_is_close2(t_data *data)
 		else if (data->map[i] == '\n')
 		{
 			if (data->map[i - 1] != '1' || data->map[i + 1] != '1')
-				return (ft_error_map(data, "La map n'est pas fermee\n", 0));
+				return (ft_error_map(data, "La map n'est pas fermee\n", 1));
 		}
 		i++;
 	}

@@ -90,6 +90,8 @@ static int	ft_get_map(t_data *data)
 	int		fd;
 
 	fd = open(data->path_map, O_RDONLY);
+	if (fd == -1)
+		return (ft_error_map(data, "La map n'existe pas\n", 0));
 	gnl = get_next_line(fd, &line);
 	data->map = ft_strdup(line);
 	free(line);

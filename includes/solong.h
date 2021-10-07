@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:50:23 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 18:14:07 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:12:52 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_create_bg(t_data *data, int color);
 void	ft_create_map(t_data *data, int when);
 int		ft_up_down(t_data *data, int where);
 int		ft_left_right(t_data *data, int where);
-void	ft_end(t_data *data);
+int		ft_end(t_data *data);
 void	ft_destroy_all_img(t_data *data);
 
 int		ft_strlen(const char *str);

@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/09 12:43:06 by ngeschwi          #+#    #+#              #
-#    Updated: 2021/10/05 19:02:34 by ngeschwi         ###   ########.fr        #
+#    Updated: 2021/10/07 15:46:14 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ SRCS = main.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= solong
+OBJ_PATH := objets
+
+PATH_OBJS := $(addprefix $(OBJ_PATH)/, $(OBJS))
+
+NAME	= so_long
 
 CC		= gcc
 RM		= rm -f
@@ -38,11 +42,20 @@ LINK	= -Iincludes -IminilibX
 
 all:		$(NAME)
 
-%.o : %.c 
-	${CC} ${CFLAGS} ${LINK} -c $< -o $@
+%.o : %.c | $(OBJ_PATH)
+	${CC} ${CFLAGS} ${LINK} -c $< -o objets/$@
 
 $(NAME):	${MLX} $(OBJS)
-		${CC} ${CFLAGS} ${LINK} ${OBJS} ${LIBS} -o ${NAME}
+		${CC} ${CFLAGS} ${PATH_OBJS} ${LINK} ${LIBS} -o ${NAME}
+
+$(OBJ_PATH) :
+		mkdir -p objets
+		mkdir -p objets/sources
+		mkdir -p objets/sources/basic_function
+		mkdir -p objets/sources/error_free
+		mkdir -p objets/sources/game
+		mkdir -p objets/sources/gnl
+		mkdir -p objets/sources/parse
 
 $(MLX) :
 		$(MAKE) -C minilibX
@@ -53,7 +66,7 @@ $(OBJS):	includes/solong.h includes/get_next_line.h minilibX/mlx.h
 clean:
 		$(MAKE) -C minilibX clean
 		$(RM) libmlx.dylib
-		$(RM) $(OBJS)
+		$(RM) $(PATH_OBJS)
 
 fclean:		clean
 		$(RM) $(NAME)

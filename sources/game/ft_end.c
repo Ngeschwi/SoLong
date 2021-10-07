@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 23:03:02 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/02 18:04:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:13:15 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_destroy_all_img(t_data *data)
 	}
 }
 
-void	ft_end(t_data *data)
+int	ft_end(t_data *data)
 {
 	free(data->map);
 	ft_free_map(data);
@@ -41,5 +41,6 @@ void	ft_end(t_data *data)
 	free(data->img_w);
 	mlx_clear_window(data->mlx, data->mlx_win);
 	mlx_destroy_window(data->mlx, data->mlx_win);
-	exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
+	return (0);
 }

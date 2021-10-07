@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:53:13 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/01 17:52:26 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:16:17 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_init_map(t_data *data)
 		return (ft_error_map(data, "La fenetre ne s'est pas affiche\n", 1));
 	ft_create_bg(data, 0x00096A09);
 	ft_create_map(data, 1);
+	mlx_hook(data->mlx_win, 17, 1L << 17, ft_end, data);
 	mlx_key_hook(data->mlx_win, ft_check_key, data);
 	mlx_loop(data->mlx);
 	return (END);

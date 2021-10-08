@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:55:56 by ngeschwi          #+#    #+#             */
-/*   Updated: 2021/10/06 13:04:49 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2021/10/08 09:19:31 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 		if (ft_init_map(&data) == ERROR)
 			return (ERROR);
 	}
-	else 
+	else
 	{
 		printf("Error\nProbleme dans le nombre d'arguments\n");
 		return (ERROR);
